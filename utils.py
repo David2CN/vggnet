@@ -18,7 +18,7 @@ def get_dataset(data_dir: str, batch_size: int=16,
     return data
     
 
-def apply_gradient(optimizer: tf.keras.optimizers.Optimizer, loss_object: tf.keras.losses.Loss , 
+def apply_gradient(optimizer: tf.keras.optimizers.Optimizer, loss_object: tf.keras.losses.Loss, 
                     model: tf.keras.models.Model, x: tf.Tensor, y: tf.Tensor):
     '''
     applies the gradients to the trainable model weights

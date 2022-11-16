@@ -27,7 +27,7 @@ class VGGBlock(Model):
         self.pool = MaxPooling2D(pool_size=pool_size, strides=strides, name=f"pool{block}")
 
     
-    def call(self, inputs):
+    def call(self, inputs: tf.Tensor):
         x = self.rows(inputs)
         out = self.pool(x)
         return out
