@@ -1,6 +1,6 @@
-
 import numpy as np
 import tensorflow as tf
+import tensorflow_datasets as tfds
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from typing import Tuple
@@ -16,6 +16,13 @@ def get_dataset(data_dir: str, batch_size: int=16,
                                         batch_size=batch_size, 
                                         shuffle=shuffle)
     return data
+
+
+def get_dataset_tfds(dataset: str="cifar10", split: str="train", download: bool=False):
+    
+    ds = tfds.load(dataset, split=split, download=download, as_supervised=True)
+    
+    return ds
     
 
 def apply_gradient(optimizer: tf.keras.optimizers.Optimizer, loss_object: tf.keras.losses.Loss, 

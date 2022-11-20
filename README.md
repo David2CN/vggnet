@@ -5,4 +5,4 @@ The architecture consists of five blocks, the first two with 2 convolution layer
 
 <img src="./assets/vgg16.png">
 
-The five blocks are followe by two fully connected layers with 4096 units and the final layer with 1000 units, which is activated with a softmax activation function to obtain the output probability distribution.
+The five blocks are followed by two fully connected layers with 4096 units and the final layer with 1000 units, which is activated with a softmax activation function to obtain the output probability distribution.

@@ -1,6 +1,6 @@
 
 import tensorflow as tf
-from tensorflow.keras.layers import Conv2D, Dense, MaxPooling2D, Flatten, Dropout
+from tensorflow.keras.layers import Conv2D, Dense, MaxPooling2D, Flatten, Dropout, UpSampling2D
 from tensorflow.keras.models import Model
 
 
@@ -37,9 +37,10 @@ class VGG16(Model):
     """
     VGG16 
     """
-    def __init__(self, num_classes: int=10):
+    def __init__(self, num_classes: int=10, upsample_input: int=None):
         super(VGG16, self).__init__()
         self.num_classes = num_classes
+        self.upsample_input = upsample_input
         
         self.block1 = VGGBlock(64, 3, 2, block=1)
         self.block2 = VGGBlock(128, 3, 2, block=2)
@@ -56,6 +57,10 @@ class VGG16(Model):
 
 
     def call(self, inputs: tf.Tensor):
+
+        if self.upsample_input:
+            inputs = UpSampling2D(size=self.upsample_input)(inputs)
+
         x = self.block1(inputs)
         x = self.block2(x)
         x = self.block3(x)
